@@ -92,6 +92,22 @@ class AuthController extends Controller
         ]);
     }
 
+    public function user_info()
+    {
+        $user = auth()->user();
+        if ($user) {
+            return response()->json([
+                'status' => 'success',
+                'data' => $user
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'UNAUTHORIZED'
+            ], 401);
+        }
+    }
+
     public function destroy()
     {
         $user_id = auth()->user()->id;

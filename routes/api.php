@@ -23,8 +23,9 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function() {
-    Route::match(array('GET','POST'),'/user-destroy', [AuthController::class, 'destroy']);
+    Route::delete('/user-destroy', [AuthController::class, 'destroy']);
     Route::get('/logout', [AuthController::class, 'logout']);
+    Route::get('/user-info', [AuthController::class, 'user_info']);
     Route::get('/task-list', [TaskController::class, 'index']);
     Route::get('/task-detail/{id}', [TaskController::class, 'show']);
     Route::post('/task-create', [TaskController::class, 'create']);
